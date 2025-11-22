@@ -4,7 +4,8 @@
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "npm --prefix backend run dev",
     "build": "npm --prefix frontend run build && npm --prefix backend run build",
-    "lint": "npm --prefix frontend run lint && npm --prefix backend run lint"
+    "lint": "npm --prefix frontend run lint && npm --prefix backend run lint",
+    "postinstall": "npm --prefix frontend install && npm --prefix backend install"
   },
   "dependencies": {
     "lucide-react": "^0.554.0",
