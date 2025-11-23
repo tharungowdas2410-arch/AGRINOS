@@ -1,6 +1,7 @@
 const API_BASE_URL =
-  import.meta.env.VITE_API_URL ??
-  (typeof window !== "undefined" ? "/api" : "http://localhost:8080/api");
+  (import.meta.env.VITE_API_URL && String(import.meta.env.VITE_API_URL).trim().length > 0)
+    ? String(import.meta.env.VITE_API_URL)
+    : (typeof window !== "undefined" ? "/api" : "http://localhost:8080/api");
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
