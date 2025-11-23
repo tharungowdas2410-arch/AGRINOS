@@ -1,3 +1,4 @@
+
 # Plant Disease Spotter – Backend
 
 Node.js + TypeScript backend for the Plant Disease Spotter platform with Google OAuth2, role-aware prediction pipelines, Prisma + PostgreSQL, Socket.IO sensor streaming, and Dockerized deployment.
@@ -148,4 +149,5 @@ A lightweight Flask placeholder (`docker/inference`) mimics responses. Replace `
 - Integrate Redis caching for plant metadata or rate limiting tokens.
 - Hook up production-ready monitoring (Prometheus, Grafana) and alerting.
 - Replace placeholder inference service with production ML deployment.
+
 
