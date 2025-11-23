@@ -178,11 +178,10 @@ def predict_disease(image_file):
     else:
         severity = "low"
     
-    # Calculate quality index (inverse of disease probability for healthy, or confidence for diseased)
     if disease.lower() == "healthy":
         quality_index = min(95, confidence * 100)
     else:
-        quality_index = max(40, (1 - confidence) * 100)
+        quality_index = max(10, min(95, (1 - confidence) * 100))
     
     return {
         "species": species,
@@ -228,7 +227,7 @@ def predict():
             ]
             species, disease, conf = random.choice(fallback_diseases)
             severity = "high" if conf > 0.8 else "medium" if conf > 0.6 else "low"
-            quality = max(40, min(95, (1 - conf) * 100 + random.uniform(-5, 5)))
+            quality = max(10, min(95, (1 - conf) * 100 + random.uniform(-5, 5)))
             return jsonify({
                 "species": species,
                 "disease": disease,
