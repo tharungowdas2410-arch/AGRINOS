@@ -15,7 +15,7 @@ const envSchema = z.object({
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
   GOOGLE_CALLBACK_URL: z.string(),
-  FRONTEND_URL: z.string().url().default("http://localhost:5173"),
+  FRONTEND_URL: z.string().url().default("https://agrinos2.vercel.app/"),
   INFERENCE_URL: z.string().url(),
   REDIS_URL: z.string().optional(),
   GEMINI_API_KEY: z.string().optional(),

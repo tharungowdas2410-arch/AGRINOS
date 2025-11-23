@@ -15,13 +15,23 @@ const app = express();
 app.set("trust proxy", 1);
 
 app.use(helmet());
-const allowedOrigins = new Set<string>(["http://localhost:5173", "http://localhost:5174"]);
+const allowedOrigins = new Set<string>(["http://localhost:5173", "http://localhost:5174","https://agrinos2.vercel.app"]);
 allowedOrigins.add(require("./config/env").env.FRONTEND_URL);
+
+const isAllowedOrigin = (origin?: string) => {
+  if (!origin) return true;
+  if (allowedOrigins.has(origin)) return true;
+  try {
+    const url = new URL(origin);
+    if (url.hostname === "localhost") return true;
+    if (url.hostname.endsWith(".vercel.app")) return true;
+  } catch {}
+  return false;
+};
 
 const corsOptions = {
   origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.has(origin)) return callback(null, true);
+    if (isAllowedOrigin(origin)) return callback(null, true);
     return callback(null, false);
   },
   credentials: true,
