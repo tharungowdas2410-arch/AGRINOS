@@ -1,7 +1,11 @@
-const API_BASE_URL =
-  (import.meta.env.VITE_API_URL && String(import.meta.env.VITE_API_URL).trim().length > 0)
-    ? String(import.meta.env.VITE_API_URL)
-    : (typeof window !== "undefined" ? "/api" : "http://localhost:8080/api");
+const API_BASE_URL = (() => {
+  const raw = import.meta.env.VITE_API_URL ? String(import.meta.env.VITE_API_URL).trim() : "";
+  if (raw) {
+    const trimmed = raw.replace(/\/+$/, "");
+    return trimmed.endsWith("/api") ? trimmed : `${trimmed}/api`;
+  }
+  return typeof window !== "undefined" ? "/api" : "http://localhost:8080/api";
+})();
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
